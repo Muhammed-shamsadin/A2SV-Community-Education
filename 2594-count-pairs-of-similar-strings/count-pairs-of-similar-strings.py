@@ -4,9 +4,36 @@ class Solution:
         for word in words:
             setted = tuple(sorted(set(word)))
             frequency[setted] += 1
-        answer = 0
-        for key, value in frequency.items():
-            answer += ((value * (value-1))//2)
-        return answer
+        
+        ans = 0
+        for key, values in frequency.items():
+            ans += ((values * (values - 1)) // 2)
+
+        return ans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        freq = defaultdict(int)
+        
+
 
        
