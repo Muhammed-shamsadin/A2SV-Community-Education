@@ -8,7 +8,20 @@ class Solution:
             total += nums[i] - nums[i - k]
             maximum = max(maximum, total)
 
-        return maximum / k 
+        return maximum / k
+
+        
+
+
+
+
+
+
+
+
+
+
+
 
 
 
