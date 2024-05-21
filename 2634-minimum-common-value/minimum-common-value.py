@@ -1,16 +1,23 @@
 class Solution:
     def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
-        i = 0
-        j = 0
-        common = float('inf')
+        n = len(nums1)
+        m = len(nums2)
+        l = 0
+        r = 0
 
-        while i < len(nums1) and j < len(nums2):
-            if nums1[i] == nums2[j]:
-                common = nums1[i]
-                break
-            elif nums1[i] < nums2[j]:
-                i += 1
+        while l < n and r < m:
+            if nums1[l] == nums2[r]:
+                return nums1[l]
+            elif nums1[l] < nums2[r]:
+                l += 1
             else:
-                j += 1
+                r += 1
         
-        return common if common != float('inf') else -1
+        return -1
+                
+
+
+        
+            
+             
+                
