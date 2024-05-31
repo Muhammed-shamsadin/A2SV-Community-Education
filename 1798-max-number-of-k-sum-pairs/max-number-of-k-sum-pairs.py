@@ -1,16 +1,21 @@
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
-        from collections import defaultdict
-
-        # int gives 0 when not found
-        complements = defaultdict(int)
-        ops = 0
-        for n in nums:
-            if complements[n] > 0:
-                ops += 1
-                complements[n] -= 1
-            elif n < k:
-                complement = k - n
-                complements[complement] += 1
-        return ops
         
+        nums.sort()
+        
+        count = 0
+        left, right = 0, len(nums) - 1
+
+        while left < right:
+            if nums[left] + nums[right] == k:
+                count += 1
+                right -= 1
+                left += 1
+            elif nums[left] + nums[right] > k:
+                right -= 1
+            else:
+                 left += 1
+           
+        
+        return count
+            
