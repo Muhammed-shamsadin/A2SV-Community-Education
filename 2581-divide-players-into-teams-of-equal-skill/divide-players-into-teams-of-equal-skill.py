@@ -1,18 +1,28 @@
 class Solution:
     def dividePlayers(self, skill: List[int]) -> int:
+        # Step 1: Sort the skill into a non-decreasing order.
         skill.sort()
-        n = len(skill)
-        sum = 0
-        l, r = 0, n - 1
-        check = skill[0] + skill[-1]
+        
+        # Step 2: initialize 2 pointers (left) and (right) at first index and last index respectively
+        length = len(skill)
+        left, right = 0, length - 1
 
-        while l < r:
-            k = skill[l] + skill[r]
-            if k == check:
-                sum += (skill[l] * skill[r])
+        # Step 3: "check" to check whether there is a way to divide the players into teams or not.
+        check = skill[left] + skill[right]
+
+        # Step 4: Variable called chemistry where we calculate the sum of all teams chemistry.
+        chemistry = 0
+
+
+        while left < right:
+            if skill[left] + skill[right] == check:
+                chemistry += (skill[left] * skill[right])
             else:
                 return -1
-            l += 1
-            r -= 1
-        
-        return sum
+                break
+                
+            left += 1
+            right -= 1
+
+        return chemistry
+
