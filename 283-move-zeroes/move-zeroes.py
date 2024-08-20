@@ -5,12 +5,14 @@ class Solution:
         """
         n = len(nums)
         left = 0
-        
-        for i in range(n):
+        right = 1
+
+        while left < n and right < n:
             if nums[left] != 0:
                 left += 1
-            else:
-                if nums[i] != 0:
-                    nums[i], nums[left] = nums[left], nums[i]
-                    left += 1
-            
+            elif nums[left] == 0 and nums[right] != 0:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+            right += 1
+
+        return nums
