@@ -1,39 +1,23 @@
 class Solution:
     def numRescueBoats(self, people: List[int], limit: int) -> int:
-        n = len(people)
 
+        length =len(people)
+
+        # Step 1: Sort the people into increasing order of there weight.
         people.sort()
 
+        # Step 2: Initialise a Variables for the pointers and to keep count of the boats
+        boats = 0
         left = 0
-        right = n - 1
-        boat = 0
+        right = length - 1
 
         while left <= right:
-            remain = limit - people[right]
-            right -= 1
-            boat += 1
-
-            if left <= right and remain >= people[left]:
+            if (people[left] + people[right]) <= limit:
                 left += 1
-        
-            
-        return boat
-                
-    
-        # people.sort()
-        
-        # left = 0
-        # right = len(people) - 1
-        # boats = 0
+            boats += 1
+            right -= 1
 
-        # while left <= right:
-        #     if left == right:  # If only one person left
-        #         boats += 1
-        #         break
-            
-        #     if people[left] + people[right] <= limit:
-        #         left += 1  # Both can fit on the boat
-        #     right -= 1  # Move the heaviest person to the boat
-        #     boats += 1
-            
-        # return boats
+        return boats                
+
+        # TC: O(N) 
+        # SC: O(N)
