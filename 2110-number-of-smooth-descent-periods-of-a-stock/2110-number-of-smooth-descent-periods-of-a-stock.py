@@ -1,30 +1,34 @@
 class Solution:
     def getDescentPeriods(self, prices: List[int]) -> int:
-        # length = len(prices)
-        # cnt = length
-        # x = 0
+        '''Approach: Sliding Window with Math. The problem asks to count the number
+        of smooth descent periods of a stock. So for that case what if we find
+        a window that fullfils the smooth descent period that would be counted one.
+        but also if we found the maximum window avaliable in that slot then all sub
+        windows are also eligible. For that case we can generate a math formula using
+        some proofs which will end up being the combnatorics of n with 2. Then we
+        will do this for every window that fullfills the criteria. One thing not to
+        forget is each day also fullfills the criteria for that case we are expected
+        to add the length of the given price on the final answer'''
 
-        # for i in range(length - 1):
-        #     if prices[i] - prices[i + 1] == 1:
-        #         x += 1
+        #Step1: declare variables for ease of use
+        left, right = 0, 1
+        length = len(prices) #due to the fact that every element also fullfills the criteria
+        answer = length
 
-        # # factorial
-        # c = x
-        # while x > 0:
-        #     c = c + (x - 1)
-        #     x -= 1
-        # return (cnt + c)
+        #Step2: iterate until the list gets exhausted
+        while right < length:
 
+            #check if the current window is fullfilling the criteria
+            while right < length and prices[right - 1] - prices[right] == 1:
+                right += 1
 
-        length = len(prices)
-        res, idx = 0, 0
+            window = right - left
+            cur = (window - 1) * window // 2
+            answer += cur
+            left = right
+            right += 1
 
-        while idx < length:
-            start = idx
-            while idx < length - 1 and (prices[idx] - prices[idx + 1]) == 1:
-                idx += 1
-            c = idx - start + 1
-            res += (c * (c + 1)) // 2
-            idx += 1
-        
-        return res
+        return answer
+        #Time Complexity: O(n)
+        #Space Complexity: O(1)
+
