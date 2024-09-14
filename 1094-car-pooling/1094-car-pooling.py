@@ -1,16 +1,14 @@
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
         length = len(trips)
-        pref = [0] * (max(trips, key = lambda x:x[2])[2] + 1)
+        pref = [0] * (1001)
 
-        for i in range(length):
-            pref[trips[i][1]] += trips[i][0]
-            pref[trips[i][2]] -= trips[i][0]
+        for numPass, start, end in trips:
+            pref[start] += numPass
+            pref[end] -= numPass
 
-        check = 0
-        for i in range(len(pref)):
-            check += pref[i]
-            if check > capacity:
-                return False
         
-        return True
+        for i in range(1, len(pref)):
+            pref[i] += pref[i - 1]      
+        
+        return max(pref) <= capacity
