@@ -8,6 +8,5 @@ class Solution:
                 temp = math.gcd(temp, nums[j])
                 if temp == k:
                     ans += 1
-                elif temp < k:
-                    break
+                
         return ans
