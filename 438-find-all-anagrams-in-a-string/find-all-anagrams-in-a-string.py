@@ -1,6 +1,6 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        curr_window = Counter(s[:len(p)])
+        curr_window = Counter(s[: len(p)])
         target_window = Counter(p)
         res = []
 
@@ -21,4 +21,3 @@ class Solution:
             left += 1
             right += 1
         return res
-        
