@@ -13,8 +13,7 @@ class Solution:
         while low <= high:
             mid = (low + high) // 2
             if nums[mid] == target:
-                ans = mid
-                return ans
+                return mid
             elif nums[mid] > target:
                 high = mid - 1
             else:
