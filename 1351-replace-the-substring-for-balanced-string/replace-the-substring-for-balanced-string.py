@@ -36,6 +36,5 @@ class Solution:
 
             right += 1
        
-
         
         return ans
