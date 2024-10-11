@@ -10,20 +10,24 @@ class Solution:
         changed = {}
         limit = len(s) // 4
         length = len(s)
+
+        #  Update Changed
         for char in counter:
             if counter[char] > limit:
                 changed[char] = counter[char] - limit
+        # if changed is empty that means we don't need any change
         if not changed:
             return 0
+
         left = right = 0
         ans = float('inf')
         window = defaultdict(int) 
 
         while right < length:
-            # First
+            # First update the window
             if s[right] in changed:
                 window[s[right]] += 1
-            # Second
+            # Second then find the length if the window is Valid.
             while left <= right and isValid():
                 ans = min(ans, right - left + 1)
                 if s[left] in window:
@@ -34,4 +38,4 @@ class Solution:
        
 
         
-        return ans if ans != float('inf') else 0
+        return ans
