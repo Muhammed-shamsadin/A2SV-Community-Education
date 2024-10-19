@@ -1,5 +1,9 @@
 class Solution:
     def findKthBit(self, n: int, k: int) -> str:
+        
+        # THIS IS COPIED 
+
+
         # Base case: When n = 1, the binary string is "0"
         if n == 1:
             return '0'
