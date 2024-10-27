@@ -1,22 +1,19 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        '''
-        Approach: Binary Search (logN)
-        ''' 
         length = len(nums)
-
-        # step 1: intialize the low and high pointers
         low = 0
         high = length - 1
-        ans = -1
 
         while low <= high:
             mid = (low + high) // 2
+
             if nums[mid] == target:
                 return mid
-            elif nums[mid] > target:
-                high = mid - 1
+                break
             else:
-                low = mid + 1
+                if nums[mid] < target:
+                    low = mid + 1
+                else:
+                    high = mid - 1
         
         return -1
