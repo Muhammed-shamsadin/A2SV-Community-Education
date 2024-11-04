@@ -1,6 +1,5 @@
 class Solution:
     def findRadius(self, houses: List[int], heaters: List[int]) -> int:
-        length = len(houses)
         houses.sort()
         heaters.sort()
 
@@ -13,6 +12,7 @@ class Solution:
                     right += 1
             return left == len(houses)
         
+        #  BS
         low, high = 0, max(houses[-1], heaters[-1])
         while low < high:
             mid = low + (high - low) // 2
