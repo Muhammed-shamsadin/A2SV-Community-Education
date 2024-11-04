@@ -14,11 +14,11 @@ class Solution:
         
         #  BS
         low, high = 0, max(houses[-1], heaters[-1])
-        while low < high:
+        while low <= high:
             mid = low + (high - low) // 2
 
             if check(mid):
-                high = mid
+                high = mid - 1
             else:
                 low = mid + 1
         return low
