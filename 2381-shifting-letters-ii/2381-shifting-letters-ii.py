@@ -1,25 +1,26 @@
 class Solution:
     def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
         length = len(s)
-        pref = [0] * (length + 1)
+        pref = [0] * length
 
-        for start, end, direction in shifts:
-            if direction == 1:
-                pref[start] += 1
-                pref[end + 1] -= 1
+        for shift in shifts:
+            start, end, val = shift
+            if val == 0:
+                pref[start] += -1
+                if end + 1 < length:
+                    pref[end + 1] -= -1
             else:
-                pref[start] -= 1
-                pref[end + 1] += 1
+                pref[start] += 1
+                if end + 1 < length:
+                    pref[end + 1] -= 1
         
-        for i in range(1, length):
-            # build the prefix sum
-            pref[i] += pref[i - 1]
+        a = list(accumulate(pref))
+        res=""
+        for i in range(length):
+            res += chr((ord(s[i]) - ord('a') + a[i]) % 26  + ord("a"))
         
-        ans = []
-        orderA = ord('a')
+        return res
+       
 
-        for i, c in enumerate(s):
-            curr = (ord(c) - orderA + pref[i]) % 26
-            ans.append(chr(curr + orderA))
-        
-        return ''.join(ans)
+
+                
