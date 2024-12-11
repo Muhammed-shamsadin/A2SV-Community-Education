@@ -1,21 +1,22 @@
 class Solution:
-    def subarraySum(self, nums: List[int], k: int) -> int:
-        length = len(nums)
-        
-        count = 0
-        pref = 0
-        pref_count = {0 : 1}
+	def subarraySum(self, nums: List[int], k: int) -> int:
 
-        for i in nums:
-            pref += i
+		result = 0 
+		prefix_sum = 0
+		d = {0 : 1}
 
-            if (pref - k) in pref_count:
-                count += pref_count[pref - k]
-            if pref in pref_count:
-                pref_count[pref] += 1
-            else:
-                pref_count[pref] = 1
-        
-        return count
-        
-        
+		for num in nums:
+		
+			prefix_sum = prefix_sum + num
+
+			if prefix_sum - k in d:
+			
+				result = result + d[prefix_sum - k]
+
+			if prefix_sum not in d:
+			
+				d[prefix_sum] = 1
+			else:
+				d[prefix_sum] = d[prefix_sum] + 1
+
+		return result
