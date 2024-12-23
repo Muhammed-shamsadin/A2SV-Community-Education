@@ -6,7 +6,7 @@ class Solution:
 
 
         for i in range(length // 2):
-            minimum = min(nums[i + i], nums[i + i])
+            minimum = nums[i + i]
             maxmimumSum += minimum
 
         return maxmimumSum
