@@ -1,10 +1,12 @@
 class Solution:
     def arrayPairSum(self, nums: List[int]) -> int:
         length = len(nums)
-        minimum = 0
+        maxmimumSum = 0
         nums.sort()
 
-        for i in range(length // 2):
-            minimum += nums[i*2]
 
-        return minimum
+        for i in range(length // 2):
+            minimum = min(nums[i + i], nums[i + i])
+            maxmimumSum += minimum
+
+        return maxmimumSum
