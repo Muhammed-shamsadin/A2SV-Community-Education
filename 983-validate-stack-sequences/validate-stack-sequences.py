@@ -5,19 +5,18 @@ class Solution:
         pointer = 0
 
         for i in range(length):
-            if stack:
-                # check if the stack[-1] == pushed[pointer]
-                while stack and stack[-1] == popped[pointer]:
-                    stack.pop()
-                    pointer += 1
-
             stack.append(pushed[i])
+            # check if the stack[-1] == pushed[pointer]
+            while stack and stack[-1] == popped[pointer]:
+                stack.pop()
+                pointer += 1
 
-        while stack and  stack[-1] == popped[pointer]:
-            stack.pop()
-            pointer += 1
             
-                
+
+        # while stack and  stack[-1] == popped[pointer]:
+        #     stack.pop() 
+        #     pointer += 1
+            
 
         if stack:
             return False
